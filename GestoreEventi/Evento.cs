@@ -60,27 +60,29 @@ namespace GestoreEventi
             this.Data = DateTime.Parse(data);
         }
         // METODI PUBBLICI
-        public void PrenotaPosti()
+        public void PrenotaPosti(uint postiPrenotati)
         {
-            if(this.PostiPrenotati < this.CapacitaMassima || this.PostiPrenotati >= 0)
+            uint numeroPostiDisponibili = this.CapacitaMassima - this.PostiPrenotati;
+            if(numeroPostiDisponibili < postiPrenotati || DateTime.Today > this.GetData())
             {
-                this.PostiPrenotati++;
+                Console.WriteLine("Il valore non può essere minore di 0 o maggiore della capacità massima (" + this.CapacitaMassima + ")");
             }
             else
             {
-                Console.WriteLine("Il valore non può essere minore di 0 o maggiore della capacità massima (" + this.CapacitaMassima + ")");
+                this.PostiPrenotati += postiPrenotati;
             }
         }
 
-        public void DisdiciPosti()
+        public void DisdiciPosti(uint prenotazioniDisdette)
         {
-            if (this.PostiPrenotati <= this.CapacitaMassima || this.PostiPrenotati > 0)
+            uint numeroPostiDisponibili = this.CapacitaMassima - this.PostiPrenotati;
+            if (DateTime.Today > this.GetData() || this.PostiPrenotati <= 0)
             {
-                this.PostiPrenotati--;
+                Console.WriteLine("Il valore non può essere minore di 0 o maggiore della capacità massima (" + this.CapacitaMassima + ")");
             }
             else
             {
-                Console.WriteLine("Il valore non può essere minore di 0 o maggiore della capacità massima (" + this.CapacitaMassima + ")");
+                this.PostiPrenotati -= prenotazioniDisdette;
             }
         }
 

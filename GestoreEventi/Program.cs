@@ -27,3 +27,7 @@ numeroPostiMassimo = uint.Parse(Console.ReadLine());
 
 Console.Write("\nQuanti posti desideri prenotare? ");
 numeroPostiPrenotati = uint.Parse(Console.ReadLine());
+
+evento2 = new Evento(nomeEvento, dataEvento, numeroPostiMassimo, numeroPostiPrenotati);
+
+Console.WriteLine(evento2.ToString());

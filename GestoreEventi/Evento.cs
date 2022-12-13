@@ -59,6 +59,18 @@ namespace GestoreEventi
                 Console.WriteLine("Il valore non può essere minore di 0 o maggiore della capacità massima (" + this.CapacitaMassima + ")");
             }
         }
+
+        public void DisdiciPosti()
+        {
+            if (this.PostiPrenotati <= this.CapacitaMassima || this.PostiPrenotati > 0)
+            {
+                this.PostiPrenotati--;
+            }
+            else
+            {
+                Console.WriteLine("Il valore non può essere minore di 0 o maggiore della capacità massima (" + this.CapacitaMassima + ")");
+            }
+        }
         // METODI PRIVATI
     }
 }

@@ -11,14 +11,21 @@ namespace GestoreEventi
         // PROPRIETA / ATTRIBUTI
         private string Titolo;
         private DateTime Data;
-        private int CapacitaMassima;
-        private int PostiPrenotati;
+        private uint CapacitaMassima;
+        private uint PostiPrenotati;
         // STATO
         // COSTRUTTORI
-        public Evento(string titolo, DateTime data, int capacitaMassima, int postiPrenotati = 0) 
+        public Evento(string titolo, string data, uint capacitaMassima)
         {
             this.Titolo = titolo;
-            this.Data = data;
+            SetData(data);
+            this.CapacitaMassima = capacitaMassima;
+            this.PostiPrenotati = 0;
+        }
+        public Evento(string titolo, string data, uint capacitaMassima, uint postiPrenotati = 0)
+        {
+            this.Titolo = titolo;
+            SetData(data);
             this.CapacitaMassima = capacitaMassima;
             this.PostiPrenotati = postiPrenotati;
         }
@@ -33,9 +40,14 @@ namespace GestoreEventi
             return this.Data;
         }
 
-        public int GetCapacitaMassima()
+        public uint GetCapacitaMassima()
         {
             return this.CapacitaMassima;
+        }
+
+        public uint GetPostiPrenotati()
+        {
+            return this.PostiPrenotati;
         }
         // SETTERS
         public void SetTitolo(string titolo)
@@ -43,9 +55,9 @@ namespace GestoreEventi
             this.Titolo = titolo;
         }
 
-        public void SetData(DateTime data)
+        public void SetData(string data)
         {
-            this.Data = data;
+            this.Data = DateTime.Parse(data);
         }
         // METODI PUBBLICI
         public void PrenotaPosti()
@@ -70,6 +82,18 @@ namespace GestoreEventi
             {
                 Console.WriteLine("Il valore non può essere minore di 0 o maggiore della capacità massima (" + this.CapacitaMassima + ")");
             }
+        }
+
+        public override string ToString()
+        {
+            return "\n\n----- "
+                   + this.GetTitolo()
+                   + " -----\n\nData: "
+                   + this.GetData().ToString("dd/MM/yyyy")
+                   + "\nCapacità massima: "
+                   + this.GetCapacitaMassima()
+                   + "\nPosti prenotati: "
+                   + this.GetPostiPrenotati();
         }
         // METODI PRIVATI
     }
